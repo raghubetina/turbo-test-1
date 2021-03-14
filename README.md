@@ -1,24 +1,36 @@
-# README
+# Turbo Basics Tutorial
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Install Turbo
 
-Things you may want to cover:
+Use the turbo-rails gem:
 
-* Ruby version
+ 1. Add the turbo-rails gem to your Gemfile: `gem 'turbo-rails'`
+ 1. Run `./bin/bundle install`
+ 1. Run `./bin/rails turbo:install`
 
-* System dependencies
+See [the gem README](https://github.com/hotwired/turbo-rails#installation) for more installation details.
 
-* Configuration
+## Generate models
 
-* Database creation
+ - `rails g scaffold room name:string`
+ - `rails g model message room:references content:text`
 
-* Database initialization
+## Add nested routes for messages
 
-* How to run the test suite
+```ruby
+# config/routes.rb
 
-* Services (job queues, cache servers, search engines, etc.)
+resources :rooms do
+  resources :messages
+end
+```
 
-* Deployment instructions
+## Add associations
 
-* ...
+```ruby
+# app/models/room.rb
+
+class Room < ApplicationRecord
+  has_many :messages
+end
+```
