@@ -1,3 +1,7 @@
 <p id="<%= dom_id message %>">
   <%= message.content %>
+
+  <small>
+    <%= time_ago_in_words message.created_at %> ago
+  </small>
 </p>
